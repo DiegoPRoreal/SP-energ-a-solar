@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A01742605 · Simulador solar fotovoltaico</title>
+<meta name="description" content="Solución a la situación problema TE1020: dimensionamiento y cotización de un sistema fotovoltaico para un aula escolar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0C1D3A;--navy2:#112A52;--gold:#D9B54A;--gold2:#B8892B;--ivory:#F5F1E8;--muted:#A9B4C7;--line:rgba(217,181,74,.28)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ivory);font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.65;font-size:17px;font-variant-numeric:tabular-nums}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(12,29,58,.94);backdrop-filter:blur(6px);z-index:5}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:500;letter-spacing:.18em;font-size:15px}
+nav{display:flex;gap:28px;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--gold)}
+.hero{padding:88px 0 80px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.08;font-weight:500;letter-spacing:-.02em;margin-bottom:24px}
+.lead{color:var(--muted);font-size:19px;max-width:34em;margin-bottom:32px}
+.facts{display:flex;flex-wrap:wrap;gap:12px 32px;font-size:15px;color:var(--muted)}
+.facts b{color:var(--gold);font-weight:500}
+.logo-panel{border:1px solid var(--line);border-radius:4px;padding:36px 28px}
+.logo-panel svg{display:block;width:100%;height:auto}
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(26px,3.4vw,36px);font-weight:500;letter-spacing:-.015em;line-height:1.2;margin-bottom:12px}
+.sub{color:var(--muted);max-width:40em;margin-bottom:44px}
+.rows{list-style:none}
+.rows li{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:20px 0;border-top:1px solid var(--line)}
+.rows li:last-child{border-bottom:1px solid var(--line)}
+.rows h3{font-size:18px;font-weight:500;color:var(--gold)}
+.rows p{color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}
+th{font-weight:500;color:var(--muted);font-size:14px}
+td:nth-child(n+2),th:nth-child(n+2){text-align:right}
+tfoot td{color:var(--gold);font-weight:500;border-bottom:0}
+.steps{list-style:none}
+.steps li{padding:16px 0;border-bottom:1px solid var(--line)}
+.steps li:first-child{padding-top:0}
+.steps small{display:block;color:var(--muted);font-size:14px;margin-bottom:2px}
+.steps span{font-size:18px}
+.steps b{color:var(--gold);font-weight:500}
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border:1px solid var(--line);border-radius:4px}
+.results div{padding:24px 22px;border-right:1px solid var(--line)}
+.results div:last-child{border-right:0}
+.results strong{display:block;font-size:30px;font-weight:500;color:var(--gold);line-height:1.2;letter-spacing:-.01em}
+.results span{font-size:14px;color:var(--muted)}
+.note{margin-top:24px;font-size:14px;color:var(--muted);max-width:52em}
+.route{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.route li{list-style:none;padding:28px 18px 0 0;border-top:2px solid var(--line);position:relative}
+.route li::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.route time{display:block;font-size:14px;color:var(--gold)}
+.route h3{font-size:17px;font-weight:500;margin:4px 0 6px;line-height:1.3}
+.route p{font-size:15px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:15px}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
+footer strong{color:var(--ivory);font-weight:500;letter-spacing:.18em}
+@media(max-width:860px){
+.hero,.two{grid-template-columns:1fr;gap:40px}
+.hero{padding:56px 0}
+.rows li{grid-template-columns:1fr;gap:4px}
+.results{grid-template-columns:1fr 1fr}
+.results div:nth-child(2){border-right:0}
+.results div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.route{grid-template-columns:1fr;gap:28px}
+.route li{padding-bottom:4px}
+nav{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs><linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="258" y1="108" x2="422" y2="204"><stop offset="0" stop-color="#F7E4A0"/><stop offset=".35" stop-color="#E2BC4B"/><stop offset=".7" stop-color="#C99A2A"/><stop offset="1" stop-color="#8F6618"/></linearGradient></defs>
+<symbol id="mark" viewBox="250 100 180 112"><path d="M290 190A50 50 0 0 1 390 190Z" fill="url(#gold)"/><path d="M345 144L329 170H340L333 188L353 160H342Z" fill="#0C1D3A"/><g stroke="url(#gold)" stroke-width="4" stroke-linecap="round" fill="none"><line x1="404" y1="190" x2="422" y2="190"/><line x1="395" y1="158" x2="411" y2="149"/><line x1="372" y1="135" x2="381" y2="119"/><line x1="340" y1="126" x2="340" y2="108"/><line x1="308" y1="135" x2="299" y2="119"/><line x1="285" y1="158" x2="269" y2="149"/><line x1="276" y1="190" x2="258" y2="190"/><line x1="252" y1="204" x2="428" y2="204" stroke-width="3"/></g></symbol>
+</svg>
+
+<header>
+<div class="wrap">
+<a class="brand" href="#inicio" aria-label="Ir al inicio"><svg width="40" height="25" viewBox="0 0 40 25" aria-hidden="true"><use href="#mark" width="40" height="25"/></svg>A01742605</a>
+<nav aria-label="Principal"><a href="#modulos">Módulos</a><a href="#ejemplo">Ejemplo de cálculo</a><a href="#ruta">Ruta</a><a href="#reporte">Reporte</a></nav>
+</div>
+</header>
+
+<main id="inicio">
+<div class="wrap hero">
+<div>
+<h1>De los datos de consumo de un aula a una cotización solar clara</h1>
+<p class="lead">Solución a la situación problema de Análisis de Circuitos Eléctricos: un simulador que dimensiona un sistema fotovoltaico, selecciona equipos reales y explica la inversión, el ahorro y el retorno en lenguaje que cualquier cliente entiende.</p>
+<div class="facts"><span><b>TE1020</b> Análisis de Circuitos Eléctricos</span><span><b>Tec de Monterrey</b> Proyecto individual</span><span><b>Caso inicial</b> Aula escolar</span></div>
+</div>
+<div class="logo-panel">
+<svg viewBox="0 0 420 230" role="img" aria-label="Logo A01742605"><use href="#mark" x="110" y="10" width="200" height="124"/><text x="210" y="198" text-anchor="middle" textLength="360" lengthAdjust="spacing" font-family="'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="46" font-weight="500" fill="#F5F1E8">A01742605</text></svg>
+</div>
+</div>
+
+<section id="modulos">
+<div class="wrap">
+<h2>Siete módulos, un solo flujo de trabajo</h2>
+<p class="sub">El vendedor captura el consumo del cliente y la herramienta lo lleva paso a paso hasta una propuesta lista para presentar.</p>
+<ul class="rows">
+<li><h3>Consumo del aula</h3><p>Registra equipos, cantidad, potencia y horas de uso. Calcula la demanda en kW y la energía diaria en kWh.</p></li>
+<li><h3>Paneles solares</h3><p>Calcula cuántos paneles hacen falta según las horas solares pico y define el arreglo en serie y en paralelo.</p></li>
+<li><h3>Inversor</h3><p>Verifica que la potencia, las tensiones y las corrientes del arreglo sean compatibles con un inversor comercial real.</p></li>
+<li><h3>Baterías</h3><p>Estima la capacidad, la configuración y la autonomía, y deja claros los supuestos y los límites del cálculo.</p></li>
+<li><h3>Catálogo comercial</h3><p>Guarda productos reales con marca, modelo, especificaciones, precio, proveedor, enlace y fecha de consulta.</p></li>
+<li><h3>Evaluación económica</h3><p>Calcula inversión, ahorro anual y retorno a partir de la tarifa en MXN/kWh que el usuario escribe.</p></li>
+<li><h3>Reporte en PDF</h3><p>Genera una propuesta técnico-comercial con portada, gráficas y anexos, pensada para un cliente sin formación técnica.</p></li>
+</ul>
+</div>
+</section>
+
+<section id="ejemplo">
+<div class="wrap">
+<h2>Ejemplo de dimensionamiento para un salón</h2>
+<p class="sub">Un recorrido con cifras ilustrativas para mostrar cómo se encadenan las fórmulas. Los precios y modelos definitivos se verifican en el simulador.</p>
+<div class="two">
+<div>
+<table>
+<thead><tr><th>Equipo</th><th>Potencia total</th><th>Horas al día</th><th>Energía</th></tr></thead>
+<tbody>
+<tr><td>12 lámparas LED de 18 W</td><td>216 W</td><td>6 h</td><td>1,296 Wh</td></tr>
+<tr><td>1 proyector</td><td>250 W</td><td>5 h</td><td>1,250 Wh</td></tr>
+<tr><td>1 computadora</td><td>150 W</td><td>6 h</td><td>900 Wh</td></tr>
+<tr><td>4 ventiladores de 60 W</td><td>240 W</td><td>6 h</td><td>1,440 Wh</td></tr>
+</tbody>
+<tfoot><tr><td>Total del aula</td><td>856 W</td><td></td><td>4,886 Wh</td></tr></tfoot>
+</table>
+</div>
+<ol class="steps">
+<li><small>Energía de cada equipo</small><span><b>E = P × t</b> y se suman todas las cargas</span></li>
+<li><small>Potencia fotovoltaica mínima</small><span><b>P<sub>FV</sub> = E / (HSP × PR)</b></span></li>
+<li><small>Conexión del arreglo</small><span>En serie se suman los voltajes: <b>V = N<sub>s</sub> × V<sub>oc</sub></b>. En paralelo se suman las corrientes: <b>I = N<sub>p</sub> × I<sub>sc</sub></b></span></li>
+<li><small>Capacidad de la batería</small><span><b>C = E / (V × DoD × η)</b></span></li>
+<li><small>Retorno de la inversión</small><span><b>Retorno = Inversión / Ahorro anual</b></span></li>
+</ol>
+</div>
+
+<div class="results" role="list">
+<div role="listitem"><strong>4.89 kWh</strong><span>Consumo diario del aula</span></div>
+<div role="listitem"><strong>1.11 kWp</strong><span>Potencia solar mínima necesaria</span></div>
+<div role="listitem"><strong>3 paneles</strong><span>De 450 W cada uno, 1.35 kWp en total</span></div>
+<div role="listitem"><strong>40 Ah a 48 V</strong><span>Batería para cubrir 30 % del consumo diario</span></div>
+</div>
+<p class="note">Supuestos del ejemplo: 5.5 horas solares pico, factor de desempeño de 0.80, descarga de la batería del 80 %, eficiencia de 0.95, 200 días de uso al año y una tarifa de 3.00 MXN/kWh. Con ellos, el aula consume unos 977 kWh al año y el ahorro estimado es de aproximadamente $2,932 MXN anuales. Son estimaciones preliminares y no garantizan un ahorro.</p>
+</div>
+</section>
+
+<section id="ruta">
+<div class="wrap">
+<h2>Ruta de cinco semanas</h2>
+<p class="sub">Cada semana cierra con una evidencia concreta, desde la primera versión publicada hasta la aplicación y el PDF finales.</p>
+<ol class="route">
+<li><time>2 al 6 de nov</time><h3>Ingreso a Photon Labs</h3><p>Herramientas, repositorio, interfaz inicial y GitHub Pages.</p></li>
+<li><time>9 al 13 de nov</time><h3>Conocer al cliente</h3><p>Inventario de cargas y módulo de consumo calculable.</p></li>
+<li><time>16 al 20 de nov</time><h3>Diseñar con componentes reales</h3><p>Paneles, conexiones y catálogo con precios verificables.</p></li>
+<li><time>23 al 27 de nov</time><h3>Preparar la cotización</h3><p>Inversor, baterías, compatibilidad, costos y recuperación.</p></li>
+<li><time>30 de nov al 4 de dic</time><h3>Presentar al director</h3><p>Validación, pruebas finales y PDF para el cliente.</p></li>
+</ol>
+</div>
+</section>
+
+<section id="reporte">
+<div class="wrap">
+<h2>Un reporte que ayuda a cerrar la venta</h2>
+<p class="sub">El simulador genera una propuesta que Photon Labs podría entregar a un cliente real. Muestra los supuestos y los límites de cada estimación, y no promete resultados que no pueda sostener.</p>
+<div class="chips"><span>Portada</span><span>Resumen ejecutivo</span><span>Análisis del consumo</span><span>Sistema recomendado</span><span>Componentes reales</span><span>Presupuesto</span><span>Ahorro y retorno</span><span>Gráficas</span><span>Anexos técnicos</span></div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<strong>A01742605</strong>
+<span>Estudiante del Tec de Monterrey · TE1020 Análisis de Circuitos Eléctricos</span>
+<span>Photon Labs S.A. de C.V. es una empresa ficticia de un escenario académico.</span>
+</div>
+</footer>
+</body>
+</html>
